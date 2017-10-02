@@ -1,33 +1,53 @@
-import { React, Component } from 'react';
-import { Text, View, TextInput, StatusBar, navigationOptions, Button, Form } from 'react-native';
+import React, { Component } from 'react';
+import { View, Image, Text } from 'react-native';
 
 class Login extends Component {
-    constructor() {
-        super();
+    submitLogin(vals) {
+        alert('done'); 
     }
     render() {
-        const { textStyle, viewStyle } = styles;
+        const { handleSubmit } = this.props;
+        const { container, logoContainer, formContainer, logo, title } = styles;
         return (
-            <View style={viewStyle}>
-            
-                <Text style={textStyle}>Username or Email</Text>
-                <TextInput keyboardType={'email-address'} returnKeyType={'next'} />
-                <Text style={textStyle}>Password</Text>
-                <TextInput secureTextEntry={true} keyboardType={'default'} returnKeyType={'go'} />
-                <Button title="blah" />
-                
+            <View style={container}>
+                <View style={logoContainer}>
+                    <Image
+                        style={logo}
+                        source={require('../assets/img/logo.jpg')}
+                    />
+                    <Text style={title}>DuoQ</Text>
+                </View>
+                <View style={formContainer}>
+                </View>
             </View>
         );
     }
    
 } 
 const styles = {
-    textStyle: {
-        fontSize: 30
+    container: {
+        flex: 1,
+        backgroundColor: 'rgb(252,55,62)'
     },
     viewStyle: {
         flex: 3,
         backgroundColor: 'red'
+    },
+    logoContainer: {
+        alignItems: 'center',
+        flexGrow: 1,
+        justifyContent: 'center'
+    },
+    logo: {
+        width: 75,
+        height: 75
+    },
+    title: {
+        color: 'white',
+        marginTop: 10,
+        fontFamily: 'Montserrat',
+        fontSize: 30
+
     }
 };
 export default Login;

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TextInput } from 'react-native';
 
-const Header = (props) => {
+const Home = () => {
     const { textStyle, viewStyle } = styles;
     return (
         <View style={viewStyle}>
-            <Text style={textStyle}>{props.headerText}</Text>
+            <Text style={textStyle}>Home</Text>
         </View>
     );
 }; 
@@ -23,4 +23,4 @@ const styles = {
         position: 'relative'
     }
 };
-export default Header;
+export default Home;

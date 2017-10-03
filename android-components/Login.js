@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, KeyboardAvoidingView } from 'react-native';
+import LoginForm from './LoginForm';
 
 class Login extends Component {
     submitLogin(vals) {
@@ -9,7 +10,7 @@ class Login extends Component {
         const { handleSubmit } = this.props;
         const { container, logoContainer, formContainer, logo, title } = styles;
         return (
-            <View style={container}>
+            <KeyboardAvoidingView behavior='padding' style={container}>
                 <View style={logoContainer}>
                     <Image
                         style={logo}
@@ -18,8 +19,9 @@ class Login extends Component {
                     <Text style={title}>DuoQ</Text>
                 </View>
                 <View style={formContainer}>
+                    <LoginForm />
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
    
@@ -40,13 +42,15 @@ const styles = {
     },
     logo: {
         width: 75,
-        height: 75
+        height: 75,
+        opacity: 0.8
     },
     title: {
         color: 'white',
         marginTop: 10,
         fontFamily: 'Montserrat',
-        fontSize: 30
+        fontSize: 30,
+        opacity: 0.6
 
     }
 };

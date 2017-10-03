@@ -3,7 +3,7 @@ import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 
 export default class LoginForm extends Component {
     render() {
-        const { container, input, buttonContainer, buttonText } = styles
+        const { container, input, buttonContainer, buttonText } = styles;
         return (
             <View style={container}>
             <TextInput
@@ -14,6 +14,7 @@ export default class LoginForm extends Component {
              keyboardType='email-address'
              autoCapitalize="none"
              autoCorrect={false}
+             underlineColorAndroid='rgba(225,225,225,0.9)'
              onSubmitEditing={() => this.passwordInput.focus()}
             />
             <TextInput
@@ -22,6 +23,7 @@ export default class LoginForm extends Component {
              placeholderTextColor='#FFF'
              secureTextEntry
              returnKeyType="go"
+             underlineColorAndroid='rgba(225,225,225,0.9)'
              ref={(input) => this.passwordInput = input}
             />
 

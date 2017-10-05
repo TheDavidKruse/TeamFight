@@ -1,3 +1,3 @@
-rootProject.name = 'albums2'
+rootProject.name = 'Teamfight'
 
 include ':app'

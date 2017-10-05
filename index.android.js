@@ -13,4 +13,4 @@ const App = StackNavigator(
   Home: { screen: Home }
    });
 //render component to the device
-AppRegistry.registerComponent('albums2', () => App);
+AppRegistry.registerComponent('Teamfight', () => App);

@@ -94,7 +94,7 @@ android {
     buildToolsVersion '25.0.0'
 
     defaultConfig {
-        applicationId "com.albums2"
+        applicationId "com.Teamfight"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

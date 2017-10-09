@@ -1,44 +1,60 @@
 import React, { Component } from 'react';
-import { View, TextInput, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, KeyboardAvoidingView } from 'react-native';
+import axios from 'axios';
 
 export default class SignUpForm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             name: '',
+            username: '',
             email: '',
             password: '',
             password_confirmation: '',
-            errors: []
+            errors: ''
         };
     }
 
-   async onRegisterPressed() {
-        try {
-            let response = await fetch('', {
-                method001: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    user: {
+     onRegisterPressed() {
+        if (this.state.password === this.state.password_confirmation) {
+            this.setState({ errors: '' });
+                   try {
+                       console.log('sending');
+            axios.post('https://teamfight.herokuapp.com/', {
                         name: this.state.name,
+                        username: this.state.username,
                         email: this.state.email,
                         password: this.state.password
-                    }
-                })
+            }).then(data => {
+                console.log('signup', data);
+                if (data.status === 200) {
+                    this.props.navigation.navigate('Login');
+                } else {
+                    this.setState({errors: 'please select a different username'});
+                }
             });
+            
+            if (response.status >= 200 && response.status < 300) {
+              this.setState({ error: "" });
+            }          
         } catch (err) {
-
+            console.log(err);
+                       this.setState({ errors: 'Something went wrong' });
         }
+        } else {
+            this.setState({
+                errors: 'password and password confirmation do not match'
+            });
+       }
+
     }
 
     render() {
-        const { container, input, buttonContainer, buttonText } = styles;
+        console.log('signup', this.props, 'state', this.state);
+        const { container, input, buttonContainer, buttonText, errors } = styles;
         return (
-            <View style={container}>
+            <KeyboardAvoidingView style={container}>
             <TextInput
              style={input}
              placeholder={'Name'}
@@ -48,6 +64,17 @@ export default class SignUpForm extends Component {
              onChangeText={(val) => this.setState({ name: val })}
              underlineColorAndroid='rgba(225,225,225,0.9)'
             />
+
+            <TextInput
+            style={input}
+            placeholder={'desired username'}
+            placeholderTextColor='#FFF'
+            returnKeyType="next"
+            keyboardType='default'
+            onChangeText={(val) => this.setState({ username: val })}
+            underlineColorAndroid='rgba(225,225,225,0.9)'
+           />
+
             <TextInput
              style={input}
              placeholder={'Email'}
@@ -81,13 +108,15 @@ export default class SignUpForm extends Component {
 
             />
 
-
-            <TouchableOpacity style={buttonContainer} onPress={this.onRegisterPressed.bind(this)}>
+            <Text style={errors}>
+            {this.state.errors}
+                </Text>
+            <TouchableOpacity style={buttonContainer} onPress={() => this.onRegisterPressed.bind(this)}>
                 <Text style={buttonText}>
-                    Login
+                    Sign Up
                 </Text>
                 </TouchableOpacity>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 
@@ -109,5 +138,8 @@ const styles = {
     buttonText: {
         textAlign: 'center',
         color: '#FFF'
+    },
+    errors: {
+        color: 'white'
     }
 };

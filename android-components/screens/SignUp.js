@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import { View, Image, Text, KeyboardAvoidingView } from 'react-native';
-import LoginForm from './LoginForm';
+import SignUpForm from './SignUpForm';
 
 class SignUp extends Component {
-    submitLogin(vals) {
-        alert('done'); 
+    constructor(props) {
+        super(props);
     }
     render() {
-        const { handleSubmit } = this.props;
         const { container, logoContainer, formContainer, logo, title } = styles;
         return (
-            <KeyboardAvoidingView behavior='padding' style={container}>
+            <KeyboardAvoidingView behavior='position' style={container}>
                 <View style={logoContainer}>
                     <Image
                         style={logo}
-                        source={require('../assets/img/logo.jpg')}
+                        source={require('../../assets/img/logo.jpg')}
                     />
-                    <Text style={title}>DuoQ</Text>
+                    <Text style={title}>TeamFight</Text>
                 </View>
                 <View style={formContainer}>
-                    <LoginForm />
+                    <SignUpForm  navigation={this.props.navigation}/>
                 </View>
             </KeyboardAvoidingView>
         );

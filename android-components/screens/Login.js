@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Image, Text, KeyboardAvoidingView, TouchableOpacity, AsyncStorage } from 'react-native';
 
 import LoginForm from './LoginForm';
 
@@ -7,6 +7,23 @@ class Login extends Component {
     constructor(props) {
         super(props);
     }
+
+    componentWillMount = () => {
+        try {
+          console.log('hi');
+         AsyncStorage.getItem('person_token').then(data => {
+           if (data !== undefined || data !== null) {
+             this.props.navigation.navigate('Tabs');
+           } else {
+             return null;
+           }
+         }
+           
+         );
+        } catch (err) {
+          console.log('help');
+        }
+      }
     render() {
         console.log('login props', this.props);
         const { container, logoContainer, formContainer, logo, title, signUp } = styles;

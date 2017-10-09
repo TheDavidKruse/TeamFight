@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabNavigator, StackNavigator, Tab } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import { NavigationComponent } from 'react-native-material-bottom-navigation';
 import { Icon } from 'react-native-elements';
 
@@ -27,7 +27,7 @@ navigationOptions: {
 });
 
 
-export const Tabs = TabNavigator({
+export const SignedIn = TabNavigator({
   Profile: { screen: Profile },
   Home: { screen: Home },
   Chat: { screen: ChatList }
@@ -62,7 +62,7 @@ export const Root = StackNavigator({
     screen: SignedOut
   },
   Tabs: {
-    screen: Tabs,
+    screen: SignedIn,
   },
 }, {
   mode: 'modal',

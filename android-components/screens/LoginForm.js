@@ -10,6 +10,7 @@ export default class LoginForm extends Component {
 
                    this.state = { email: "", password: "", errors: "" };
                  }
+                 
 
                  async storeToken(accessToken) {
                    try {
@@ -17,15 +18,6 @@ export default class LoginForm extends Component {
                      this.getToken();
                    } catch (error) {
                      console.log("something went wrong", error);
-                   }
-                 }
-
-                 async getToken() {
-                   try {
-                     let token = await AsyncStorage.getItem(PERSON_TOKEN);
-                     console.log('token', token);
-                   } catch (error) {
-                     console.log('something went wrong');
                    }
                  }
 

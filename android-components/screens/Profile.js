@@ -3,8 +3,14 @@ import { View, Image, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, A
 import axios from 'axios';
 
 class Profile extends Component{
-    constructor(){
+    constructor() {
         super();
+
+        this.state = {
+            name: 'David',
+            description: '',
+            games: [],
+        };
     }
 
     componentDidMount = () => {
@@ -14,39 +20,28 @@ class Profile extends Component{
     }
     
     render (){
-        const {container, viewStyle, title, signUp, buttonText, buttonContainer, input, inputContainer } = styles;
+        const {container, buttonText, buttonContainer, input, inputContainer, title } = styles;
         return (<View style={container}>
-            <TextInput
-                style={input}
-                placeholder={'email'}
-                placeholderTextColor="#FFF"
-                returnKeyType="next"
-                keyboardType="email-address"
-                autoCapitalize="none" autoCorrect={false}
-                onChangeText={
-                    val => this.setState(
-                  { email: val }
-                    )}
-                underlineColorAndroid="rgba(225,225,225,0.9)"
-                onSubmitEditing={() => this.passwordInput.focus()} />
-            <TextInput
-                style={input}
-                placeholder={"Password"}
-                placeholderTextColor="#FFF"
-                secureTextEntry
-                returnKeyType="go"
-                onChangeText={val => this.setState(
-                  { password: val }
-                )} underlineColorAndroid="rgba(225,225,225,0.9)" ref={input => (this.passwordInput = input)} />
-
-            <TouchableOpacity style={buttonContainer} onPress={ () => this.handleLogin()}>
+            <View style={inputContainer}>
+                <Text style={title}>
+                {this.state.name}
+                </Text>
+                <TextInput
+                    style={input}
+                    placeholder={"Description"}
+                    placeholderTextColor="#000"
+                    defaultValue={this.state.description}
+                    multiline
+                    numberOfLines={5}
+                    returnKeyType="go"
+                    onChangeText={val => this.setState(
+                    { description: val }
+                    )} underlineColorAndroid="rgba(225,225,225,0.9)"
+                />
+            </View>
+            <TouchableOpacity style={buttonContainer} onPress={() => this.handleUpdate()}>
               <Text style={buttonText}>
                 Update
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={signUp} onPress={() => this.moveIt()}>
-              <Text style={buttonText}>
-                Sign Up
               </Text>
             </TouchableOpacity>
           </View>
@@ -57,7 +52,8 @@ class Profile extends Component{
 const styles = {
     container: {
         flex: 1,
-        backgroundColor: 'rgb(252,55,62)'
+        backgroundColor: 'rgb(252,55,62)',
+        alignItems: 'center'
     },
     viewStyle: {
         flex: 3,
@@ -74,24 +70,31 @@ const styles = {
         opacity: 0.8
     },
     title: {
-        color: 'white',
+        color: 'black',
         marginTop: 10,
         fontFamily: 'Montserrat',
         fontSize: 30,
-        opacity: 0.6
+        opacity: 0.6,
     },
-        inputContainer: {
-        padding: 20
+    inputContainer: {
+        marginTop: 20,
+        width: '90%',
+        height: 300,
+        backgroundColor: 'rgb(230,230,230)',
+        borderRadius: 15.0,
+        elevation: 8
     },
     input: {
-        height: 40,
+        height: 150,
         marginBottom: 20,
-        color: '#FFF',
+        color: '#000',
         paddingHorizontal: 10
     },
     buttonContainer: {
+        marginTop: 20,
         backgroundColor: '#000',
-        paddingVertical: 10
+        paddingVertical: 10,
+        width: '85%'
     },
     buttonText: {
         textAlign: 'center',

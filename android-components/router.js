@@ -21,7 +21,6 @@ export const SignedOut = StackNavigator({
 navigationOptions: {
   headerStyle: {
     backgroundColor: 'rgb(252,55,62)',
-    elevation: 0,
   }
 }
 });

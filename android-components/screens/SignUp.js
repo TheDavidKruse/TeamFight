@@ -47,7 +47,6 @@ const styles = {
     title: {
         color: 'white',
         marginTop: 10,
-        fontFamily: 'Montserrat',
         fontSize: 30,
         opacity: 0.6
 

@@ -9,10 +9,9 @@ class Login extends Component {
     }
 
     componentWillMount = () => {
-        try {
-          console.log('hi');
+
          AsyncStorage.getItem('person_token').then(data => {
-           if (data !== undefined || data !== null) {
+           if (data !== undefined) {
              this.props.navigation.navigate('Tabs');
            } else {
              return null;
@@ -20,10 +19,7 @@ class Login extends Component {
          }
            
          );
-        } catch (err) {
-          console.log('help');
         }
-      }
     render() {
         console.log('login props', this.props);
         const { container, logoContainer, formContainer, logo, title, signUp } = styles;
@@ -60,7 +56,6 @@ const styles = {
     title: {
         color: 'white',
         marginTop: 10,
-        fontFamily: 'Montserrat',
         fontSize: 30,
         opacity: 0.6
     }

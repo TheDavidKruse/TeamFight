@@ -12,19 +12,16 @@ export default class LoginForm extends Component {
                  }
                  
 
-                 async storeToken(accessToken) {
-                   try {
-                     await AsyncStorage.setItem(PERSON_TOKEN, accessToken);
-                     this.getToken();
-                   } catch (error) {
-                     console.log("something went wrong", error);
-                   }
+                  storeToken(accessToken) {
+                    AsyncStorage.setItem(PERSON_TOKEN, accessToken)
+                    .catch(error => {
+                    console.log("something went wrong", error);
+                   })
                  }
 
                  handleLogin() {
-                   try {
                      const response = axios.post(
-                       `https://teamfight.herokuapp.com/login`,
+                       `http://localhost:8000/login`,
                        {
                            email: this.state.email,
                            password: this.state.password
@@ -36,11 +33,10 @@ export default class LoginForm extends Component {
                         this.storeToken(data.data.user.token);
                         this.props.navigation.navigate('Tabs');
                     }
+                     }).catch(error => {
+                       console.log(error.message);
                      });
-                   } catch (err) {
-                     this.setState({ error: err });
                    }
-                 }
 
                  moveIt() {
                   this.props.navigation.navigate('SignUp');

@@ -21,7 +21,7 @@ export default class SignUpForm extends Component {
             this.setState({ errors: '' });
                    try {
                        console.log('sending');
-            axios.post('https://teamfight.herokuapp.com/', {
+            axios.post('http://localhost:8000/', {
                         name: this.state.name,
                         username: this.state.username,
                         email: this.state.email,
